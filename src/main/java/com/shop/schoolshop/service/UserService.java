@@ -2,9 +2,9 @@ package com.shop.schoolshop.service;
 
 import com.shop.schoolshop.pojo.ResultBean;
 import com.shop.schoolshop.pojo.User;
+import com.shop.schoolshop.pojo.UserLogin;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.transform.Result;
 import java.util.List;
 
 public interface UserService {
@@ -17,10 +17,9 @@ public interface UserService {
 
     /**
      * 登录用户账号
-     * @param userPhone
-     * @param passWord
+     * @param userLogin
      * @param request
      * @return
      */
-    ResultBean byLogin(String userPhone, String passWord, HttpServletRequest request);
+    ResultBean byLogin(UserLogin userLogin, HttpServletRequest request);
 }

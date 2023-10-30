@@ -1,7 +1,6 @@
 package com.shop.schoolshop.controller.login;
 
 import com.shop.schoolshop.pojo.ResultBean;
-import com.shop.schoolshop.pojo.User;
 import com.shop.schoolshop.pojo.UserLogin;
 import com.shop.schoolshop.service.UserService;
 import io.swagger.annotations.Api;
@@ -29,6 +28,6 @@ public class LoginController {
     @PostMapping("/login")
     @ResponseBody
     public ResultBean login(@RequestBody UserLogin userLogin, HttpServletRequest request){
-        return userService.byLogin(userLogin.getUserPhone(),userLogin.getPassWord(),request);
+        return userService.byLogin(userLogin,request);
     }
 }
