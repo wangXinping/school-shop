@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @Api(tags = "登录管理接口")
-@RequestMapping("/login")
+@RequestMapping("/system")
 public class LoginController {
 
     @Autowired
@@ -25,8 +25,8 @@ public class LoginController {
      * @param request
      * @return
      */
-    @ApiOperation("登录用户账号")
-    @PostMapping("/")
+    @ApiOperation("登录用户账号返回token")
+    @PostMapping("/login")
     @ResponseBody
     public ResultBean login(@RequestBody UserLogin userLogin, HttpServletRequest request){
         return userService.byLogin(userLogin.getUserPhone(),userLogin.getPassWord(),request);

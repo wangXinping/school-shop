@@ -34,6 +34,9 @@ public class User {
     @ApiModelProperty(value = "头像")
     private String userFace;
 
+    @ApiModelProperty(value = "是否VIP")
+    private String isVip;
+
     @ApiModelProperty(value = "个人介绍")
     private String introduce;
 }

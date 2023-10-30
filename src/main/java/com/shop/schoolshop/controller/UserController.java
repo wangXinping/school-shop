@@ -2,6 +2,7 @@ package com.shop.schoolshop.controller;
 
 import com.shop.schoolshop.pojo.User;
 import com.shop.schoolshop.service.UserService;
+import com.shop.schoolshop.util.JwtTokenUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;

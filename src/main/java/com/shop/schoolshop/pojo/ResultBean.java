@@ -47,11 +47,12 @@ public class ResultBean {
      * @param msg
      * @return
      */
-    public static ResultBean error(String msg){
+    public static ResultBean error(Integer code,String msg){
         ResultBean resultBean = new ResultBean();
-        resultBean.setCode(500);
+        resultBean.setCode(code);
         resultBean.setMsg(msg);
         return resultBean;
     }
+
 
 }
