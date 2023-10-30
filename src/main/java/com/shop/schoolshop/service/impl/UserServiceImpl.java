@@ -1,5 +1,6 @@
 package com.shop.schoolshop.service.impl;
 
+import com.ramostear.captcha.HappyCaptcha;
 import com.shop.schoolshop.mapper.UserMapper;
 import com.shop.schoolshop.pojo.ResultBean;
 import com.shop.schoolshop.pojo.User;
@@ -41,6 +42,14 @@ public class UserServiceImpl implements UserService {
                 || userLogin.getPassWord() == "" || userLogin.getPassWord() == null){
             return ResultBean.error(500,"用户账号或密码不能为空！");
         }
+        //验证码进行检验
+        boolean verification = HappyCaptcha.verification(request, userLogin.getCode(), true);
+        if (!verification) {
+            return ResultBean.error(500,"验证码输入错误，请重新输入");
+        }
+        //如果通过,清除当前验证码验证
+        HappyCaptcha.remove(request);
+
         //使用MD5工具类对密码进行加密
         String pwd = MD5Util.MD5(userLogin.getPassWord());
 
