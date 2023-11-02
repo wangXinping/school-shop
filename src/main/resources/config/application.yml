@@ -17,6 +17,9 @@ mybatis:
     #开启驼峰命名
     map-underscore-to-camel-case: true
 
+lex:
+  filepath: D:\Study\school-shop\images\
+
 
 
 

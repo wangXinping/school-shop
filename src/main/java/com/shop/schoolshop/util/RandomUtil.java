@@ -1,19 +1,16 @@
-package com.shop.schoolshop;
-
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+package com.shop.schoolshop.util;
 
 import java.util.Random;
 
-@SpringBootTest
-class SchoolShopApplicationTests {
+/**
+ * 随机值工具类
+ */
+public class RandomUtil {
 
-
-    //private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
     private static final String CHARACTERS = "0123456789";
 
-    @Test
-    public static void main(String[] args) {
+    public static String createRandom ()
+    {
         int length = 12; // 字符串的长度
         Random random = new Random();
 
@@ -24,8 +21,7 @@ class SchoolShopApplicationTests {
             sb.append(CHARACTERS.charAt(index));
         }
         String randomString = sb.toString();
-        System.out.println(randomString);
-}
-
-
+        //System.out.println(randomString);
+        return randomString;
+    }
 }

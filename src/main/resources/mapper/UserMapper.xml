@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.shop.schoolshop.mapper.UserMapper">
-
+    <!--验证是否存在密码和账号-->
     <select id="getByphoneAndpassWord" resultType="com.shop.schoolshop.pojo.User">
         select * from t_user where phone = #{userPhone} and password = #{passWord}
     </select>

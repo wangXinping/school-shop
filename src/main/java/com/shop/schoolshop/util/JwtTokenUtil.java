@@ -4,13 +4,9 @@ package com.shop.schoolshop.util;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.auth0.jwt.exceptions.JWTVerificationException;
-import com.auth0.jwt.interfaces.Claim;
-import com.auth0.jwt.interfaces.DecodedJWT;
-import lombok.var;
+import com.shop.schoolshop.pojo.User;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,10 +20,11 @@ public class JwtTokenUtil {
     //token密钥
     private static final String KEY = "tye_key";
 
+
     /**
      * 获取token
      */
-    public static String setToken(String phone,String password){
+    public static String setToken(User user){
 
         //获取jwt生成器
         JWTCreator.Builder jwtBuild = JWT.create();
@@ -37,11 +34,11 @@ public class JwtTokenUtil {
         header.put("typ","JWT");  //设置token的type为jwt
         header.put("alg","HS256");  //表明加密的算法为hs256
 
-
         //开始生成token
         String token = jwtBuild.withHeader(header)  //设置头部信息
-                .withClaim("phone",phone)   //设置用户账号
-                .withClaim("password",password)  //设置密码
+                .withClaim("phone",user.getPhone())
+                .withClaim("userName",user.getUserName())
+                .withClaim("password",user.getPassword())
                 .withExpiresAt(new Date(System.currentTimeMillis() +  1000 * 60 * 60 * 24))  //设置token过期时间，为24小时
                 .withIssuedAt(new Date(System.currentTimeMillis()))  //执行token时间，为系统当前时间
                 .withIssuer("wxp")  //执行者
@@ -51,6 +48,7 @@ public class JwtTokenUtil {
         return token;
 
     }
+
 
 
 

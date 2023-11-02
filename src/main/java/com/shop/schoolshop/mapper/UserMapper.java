@@ -28,4 +28,5 @@ public interface UserMapper {
      * @return
      */
     User getByphoneAndpassWord(@Param("userPhone") String userPhone, @Param("passWord") String passWord);
+
 }

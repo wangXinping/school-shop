@@ -7,6 +7,9 @@ import com.shop.schoolshop.pojo.UserLogin;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+/**
+ * 用户服务接口
+ */
 public interface UserService {
 
     /**
@@ -22,4 +25,5 @@ public interface UserService {
      * @return
      */
     ResultBean byLogin(UserLogin userLogin, HttpServletRequest request);
+
 }

@@ -1,6 +1,7 @@
 package com.shop.schoolshop.controller.captcha;
 
 import com.ramostear.captcha.HappyCaptcha;
+import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @RestController
 @RequestMapping("/code")
+@Api(tags = "验证码管理接口")
 public class CaptchaController {
 
     /**

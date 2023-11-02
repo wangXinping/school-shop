@@ -2,6 +2,9 @@ package com.shop.schoolshop.util;
 
 import java.security.MessageDigest;
 
+/**
+ * MD5工具类
+ */
 public class MD5Util {
     /**
      * MD5加密

@@ -10,6 +10,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+/**
+ * 登录控制类
+ */
 @RestController
 @Api(tags = "登录管理接口")
 @RequestMapping("/system")

@@ -7,22 +7,24 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-
+/**
+ * 用户实体类
+ */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode
-@ApiModel(value = "user对象")
+@ApiModel(value = "用户实体类")
 public class User {
 
-    @ApiModelProperty(value = "id")
-    private int userId;
+    @ApiModelProperty(value = "乐享账号")
+    private String userId;
 
-    @ApiModelProperty(value = "用户姓名")
+    @ApiModelProperty(value = "用户昵称")
     private String userName;
 
     @ApiModelProperty(value = "性别")
-    private int sex;
+    private String sex;
 
     @ApiModelProperty(value = "手机号")
     private String phone;
