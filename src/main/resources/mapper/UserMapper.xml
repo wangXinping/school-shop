@@ -8,4 +8,32 @@
     <select id="getByphoneAndpassWord" resultType="com.shop.schoolshop.pojo.User">
         select * from t_user where phone = #{userPhone} and password = #{passWord}
     </select>
+
+    <!--查询所有用户信息及分页-->
+    <!--查询用户信息-->
+    <select id="getAllUser" resultType="com.shop.schoolshop.pojo.User">
+        select user_id,user_name,phone,sex,user_face,isVip,introduce
+        from t_user
+        <where>
+            <if test="user.userId != null and user.userId != ''">
+                user_id = #{user.userId}
+            </if>
+            <if test="user.password != null and user.password != ''">
+                and password=#{user.password}
+            </if>
+            <if test="user.userName != null and user.userName != ''">
+                and user_name = #{user.userName}
+            </if>
+            <if test="user.phone != null and user.phone != ''">
+                and phone = #{user.phone}
+            </if>
+            <if test="user.sex != null and user.sex != ''">
+                and sex = #{user.sex}
+            </if>
+            <if test="user.isVip != null and user.isVip != ''">
+                and isVip = #{user.isVip}
+            </if>
+        </where>
+        limit #{currentPage},#{size}
+    </select>
 </mapper>

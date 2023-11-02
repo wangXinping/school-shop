@@ -27,10 +27,12 @@ public class UserServiceImpl implements UserService {
     /**
      * 查询用户所有信息
      * @return
+     * @param currentPage
+     * @param size
      */
     @Override
-    public List<User> getAllUser() {
-        return userMapper.getAllUser();
+    public List<User> getAllUser(Integer currentPage, Integer size) {
+        return userMapper.getAllUser(currentPage,size,new User());
     }
 
     /**

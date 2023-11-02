@@ -15,8 +15,10 @@ public interface UserService {
     /**
      * 查询用户所有信息
      * @return
+     * @param currentPage
+     * @param size
      */
-    List<User> getAllUser();
+    List<User> getAllUser(Integer currentPage, Integer size);
 
     /**
      * 登录用户账号

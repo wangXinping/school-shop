@@ -23,8 +23,11 @@ public class UserController {
      */
     @ApiOperation("查询所有用户信息及分页")
     @GetMapping( "/")
-    public List<User> getAllUser(){
-        return userService.getAllUser();
+    public List<User> getAllUser(@RequestParam(defaultValue = "1") Integer current,//当前页
+                                 @RequestParam(defaultValue = "10") Integer size){ //每页总数
+
+        Integer currentPage = (current-1) * size; //当前页的第一个信息
+        return userService.getAllUser(currentPage,size);
     }
 
 }

@@ -3,7 +3,6 @@ package com.shop.schoolshop.mapper;
 import com.shop.schoolshop.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 
 
 import java.util.List;
@@ -17,9 +16,10 @@ public interface UserMapper {
     /**
      * 获取所有用户信息
      * @return
+     * @param currentPage
+     * @param size
      */
-    @Select("select * from t_user")
-    List<User> getAllUser();
+    List<User> getAllUser(@Param("currentPage") Integer currentPage, @Param("size") Integer size,@Param("user") User user);
 
     /**
      * 用户登录

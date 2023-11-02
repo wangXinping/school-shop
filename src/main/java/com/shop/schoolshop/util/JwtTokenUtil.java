@@ -39,7 +39,7 @@ public class JwtTokenUtil {
                 .withClaim("phone",user.getPhone())
                 .withClaim("userName",user.getUserName())
                 .withClaim("password",user.getPassword())
-                .withExpiresAt(new Date(System.currentTimeMillis() +  1000 * 60 * 60 * 24))  //设置token过期时间，为24小时
+                .withExpiresAt(new Date(System.currentTimeMillis() +  1000 * 60 * 60 * 72))  //设置token过期时间，为72小时
                 .withIssuedAt(new Date(System.currentTimeMillis()))  //执行token时间，为系统当前时间
                 .withIssuer("wxp")  //执行者
                 .sign(Algorithm.HMAC256(KEY));  //进行签名，选择加密算法，以字符串秘钥为参数
