@@ -41,4 +41,11 @@ public interface UserInfoMapper {
      */
     @Delete("delete from t_user where user_id = #{userId}")
     int deleteUserInfo(String userId);
+
+    /**
+     * 注册用户信息
+     * @param user
+     * @return
+     */
+    int InsertUser(User user);
 }

@@ -32,7 +32,7 @@ public class UserInfoController {
      * 查看个人信息
      * @return
      */
-    @ApiOperation(value = "查看用户个人信息",produces = "image/jpeg")
+    @ApiOperation(value = "查看用户个人信息")
     @GetMapping("/")
     public User getByUserInfo(@RequestHeader("Authorization") String token, HttpServletResponse response){
         //根据token获取用户手机号（手机号是唯一的）

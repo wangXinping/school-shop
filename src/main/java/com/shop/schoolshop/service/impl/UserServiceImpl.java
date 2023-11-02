@@ -8,12 +8,14 @@ import com.shop.schoolshop.pojo.UserLogin;
 import com.shop.schoolshop.service.UserService;
 import com.shop.schoolshop.util.JwtTokenUtil;
 import com.shop.schoolshop.util.MD5Util;
+import com.shop.schoolshop.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+
 
 /**
  * 用户服务实现类
@@ -69,6 +71,7 @@ public class UserServiceImpl implements UserService {
        }
         return ResultBean.error(500,"登录失败,用户名或密码输入错误");
     }
+
 
 
 }

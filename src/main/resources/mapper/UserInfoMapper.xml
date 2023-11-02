@@ -4,7 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.shop.schoolshop.mapper.UserInfoMapper">
-
     <!--更新用户信息-->
     <update id="updateByUserInfo">
         update t_user
@@ -33,6 +32,11 @@
         </set>
         where user_id = #{user.userId}
     </update>
+    <!--注册用户信息-->
+    <insert id="InsertUser">
+        INSERT INTO t_user(`user_id`, `user_name`, `phone`, `password`)
+        VALUES (#{userId}, #{userName}, #{phone}, #{password});
+    </insert>
     <!--查询用户信息-->
     <select id="getByUserInfo" resultType="com.shop.schoolshop.pojo.User">
         select user_id,user_name,phone,sex,user_face,isVip,introduce

@@ -3,8 +3,10 @@ package com.shop.schoolshop.service.impl;
 import com.shop.schoolshop.mapper.UserInfoMapper;
 import com.shop.schoolshop.pojo.ResultBean;
 import com.shop.schoolshop.pojo.User;
+import com.shop.schoolshop.pojo.UserLogin;
 import com.shop.schoolshop.service.UserInfoService;
 import com.shop.schoolshop.util.MD5Util;
+import com.shop.schoolshop.util.RandomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -118,6 +120,39 @@ public class UserInfoServiceImpl implements UserInfoService {
             return ResultBean.success("更新头像成功");
         }
         return ResultBean.error(500,"更新头像失败");
+    }
+
+    /**
+     * 注册用户信息
+     * @param userRegister
+     * @return
+     */
+    @Transactional
+    @Override
+    public ResultBean InsertUser(UserLogin userRegister) {
+        User user = new User();
+        //产生随机的账号
+        String userId = RandomUtil.createRandom();
+        user.setUserId(userId);
+        //手机号必须唯一
+        User byuserPhone = userInfoMapper.getByuserPhone(userRegister.getUserPhone());
+        if (byuserPhone != null){
+            return ResultBean.error(500,"该手机号已绑定其他账号");
+        }
+        user.setPhone(userRegister.getUserPhone());
+        //判断两次输入的密码是否一致
+        if (!userRegister.getPassWord().equals(userRegister.getConfirmPwd())){
+            return ResultBean.error(500,"两次输入的密码不一致");
+        }
+        //密码进行加密
+        String md5password = MD5Util.MD5(userRegister.getPassWord());
+        user.setPassword(md5password);
+        user.setUserName(userRegister.getUserName());
+        int result = userInfoMapper.InsertUser(user);
+        if (1 == result){
+            return ResultBean.success("注册成功");
+        }
+        return ResultBean.error(500,"注册失败");
     }
 
 

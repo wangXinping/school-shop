@@ -2,7 +2,7 @@ package com.shop.schoolshop.service;
 
 import com.shop.schoolshop.pojo.ResultBean;
 import com.shop.schoolshop.pojo.User;
-import org.springframework.web.multipart.MultipartFile;
+import com.shop.schoolshop.pojo.UserLogin;
 
 /**
  * 个人信息服务接口
@@ -48,4 +48,11 @@ public interface UserInfoService {
      * @return
      */
     ResultBean updateByFace(String fileName, String userId);
+
+    /**
+     * 注册用户信息
+     * @param userRegister
+     * @return
+     */
+    ResultBean InsertUser(UserLogin userRegister);
 }
