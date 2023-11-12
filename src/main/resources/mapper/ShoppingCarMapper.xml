@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.schoolshop.mapper.ShoppingCarMapper">
+
+    <resultMap id="UserAndGoods" type="com.shop.schoolshop.pojo.ShoppingCar">
+        <collection property="user" ofType="com.shop.schoolshop.pojo.User">
+            <id property="userId" column="uid"></id>
+            <result property="userName" column="uname"></result>
+        </collection>
+        <collection property="sellGoods" ofType="com.shop.schoolshop.pojo.SellGoods">
+            <id property="goodsId" column="sgid"></id>
+            <result property="goodsName" column="sgname"></result>
+            <result property="price" column="sgprice"></result>
+            <result property="present" column="sgpresent"></result>
+            <collection property="user" ofType="com.shop.schoolshop.pojo.User">
+                <id property="userId" column="u2id"></id>
+                <result property="userName" column="u2name"></result>
+                <result property="userFace" column="u2face"></result>
+            </collection>
+            <collection property="goodsImage" ofType="com.shop.schoolshop.pojo.GoodsImage">
+                <result property="imagesName" column="iname"></result>
+            </collection>
+        </collection>
+
+    </resultMap>
+    <!--将商品添加到购物车中-->
+    <insert id="InsertShoppingCarInfo">
+        insert into shopping_car(user_id, goods_id) values (#{userId},#{goodsId});
+    </insert>
+    <!--将商品从购物车中去除-->
+    <delete id="deleteShoppingCarInfo">
+        delete
+        from shopping_car
+        where user_id = #{userId} and goods_id = #{goodsId}
+    </delete>
+    <!--清空个人购物车-->
+    <delete id="deleteAllShoppingCarInfo">
+        delete
+        from shopping_car
+        where user_id = #{user.userId};
+    </delete>
+    <!--查询个人购物车-->
+    <select id="getShoppingCarInfo" resultMap="UserAndGoods">
+        SELECT
+            u.user_id uid,
+            u.user_name uname,
+            sg.user_id sgid,
+            sg.goods_name sgname,
+            sg.price sgprice,
+            sg.present sgpresent,
+            u2.user_id u2id,
+            u2.user_name u2name,
+            u2.user_face u2face,
+            i.images_name iname
+        FROM
+            shopping_car sc
+                LEFT JOIN t_user u ON sc.user_id = u.user_id
+                LEFT JOIN sell_goods sg ON sc.goods_id = sg.goods_id
+                LEFT JOIN t_user u2 ON sg.user_id = u2.user_id /*卖家用户信息*/
+                LEFT JOIN goods_images i ON sg.goods_id = i.goods_id
+        where
+            u.user_id = #{userId}
+    </select>
+</mapper>

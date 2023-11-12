@@ -40,4 +40,5 @@ public class User {
 
     @ApiModelProperty(value = "个人介绍")
     private String introduce;
+
 }

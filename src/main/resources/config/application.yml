@@ -8,6 +8,11 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
+    #取消文件大小的限制
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
 #mybatis配置
 mybatis:
@@ -18,7 +23,10 @@ mybatis:
     map-underscore-to-camel-case: true
 
 lex:
+  #头像存放路径
   filepath: D:\Study\school-shop\images\
+  imagespath: D:\Study\school-shop\images\goodsimgs\
+
 
 
 

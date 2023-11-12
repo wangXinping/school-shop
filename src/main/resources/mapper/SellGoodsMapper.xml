@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.schoolshop.mapper.SellGoodsMapper">
+
+    <resultMap id="ResultGoods" type="com.shop.schoolshop.pojo.SellGoods">
+        <id column="goods_id" property="goodsId"></id>
+        <result column="goods_name" property="goodsName"></result>
+        <result column="price" property="price"></result>
+        <result column="user_id" property="userId"></result>
+        <result column="present" property="present"></result>
+        <result column="category_id" property="categoryId"></result>
+        <result column="create_time" property="createTime"></result>
+    </resultMap>
+
+    <resultMap id="GoodsInfo" type="com.shop.schoolshop.pojo.SellGoods" extends="ResultGoods">
+        <result column="cname" property="categoryName"></result>
+        <collection property="goodsImage" ofType="com.shop.schoolshop.pojo.GoodsImage">
+            <result column="iname" property="imagesName"></result>
+        </collection>
+        <collection property="user" ofType="com.shop.schoolshop.pojo.User">
+            <id column="user_id" property="userId"></id>
+            <result column="user_name" property="userName"></result>
+            <result column="phone" property="phone"></result>
+            <result column="user_face" property="userFace"></result>
+        </collection>
+        <collection property="shoppingCar" ofType="com.shop.schoolshop.pojo.ShoppingCar">
+            <id column="scid" property="shoppingId"></id>
+        </collection>
+    </resultMap>
+    <!--查询所有商品-->
+    <select id="getAllGoods" resultMap="GoodsInfo">
+        SELECT
+            s.*,
+            tu.*,
+            c.category_name cname,
+            i.images_name iname,
+            sc.shoppingcar_id scid
+        FROM
+            sell_goods s
+                LEFT JOIN t_category c
+                          ON s.category_id =c.category_id
+                LEFT JOIN goods_images i
+                          ON i.goods_id = s.goods_id
+                LEFT JOIN t_user tu
+                          ON s.user_id = tu.user_id
+                LEFT JOIN shopping_car sc on s.goods_id = sc.goods_id
+        <where>
+            <if test="sellGoods.goodsName != null">
+                s.goods_name LIKE CONCAT('%',#{sellGoods.goodsName},'%')
+            </if>
+        </where>
+    </select>
+    <!--添加多张图片-->
+    <insert id="insertImages">
+        INSERT INTO goods_images(`images_name`, `goods_id`) VALUES
+        <foreach collection="imagesNames" item="item" separator=",">
+            (#{item}, #{goodsId})
+        </foreach>
+
+    </insert>
+
+</mapper>

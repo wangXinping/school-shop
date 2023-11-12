@@ -1,6 +1,7 @@
 package com.shop.schoolshop.controller.captcha;
 
 import com.ramostear.captcha.HappyCaptcha;
+import com.ramostear.captcha.support.CaptchaStyle;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
