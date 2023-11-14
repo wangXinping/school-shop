@@ -58,6 +58,10 @@ public class ShoppingCarServiceImpl implements ShoppingCarService {
      */
     @Override
     public ResultBean deleteShoppingCarInfo(ShoppingCar shoppingCar) {
+        if (shoppingCar.getUserId()==null && shoppingCar.getGoodsId() == null){
+            shoppingCar.setGoodsId(shoppingCar.getSellGoods().getGoodsId());
+            shoppingCar.setUserId(shoppingCar.getUser().getUserId());
+        }
         int result = shoppingCarMapper.deleteShoppingCarInfo(shoppingCar.getUserId(),shoppingCar.getGoodsId());
         if (result > 0){
             return ResultBean.success("商品已移除购物车！");

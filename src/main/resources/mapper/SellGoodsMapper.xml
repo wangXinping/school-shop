@@ -28,6 +28,7 @@
         </collection>
         <collection property="shoppingCar" ofType="com.shop.schoolshop.pojo.ShoppingCar">
             <id column="scid" property="shoppingId"></id>
+            <result column="uid" property="userId"></result>
         </collection>
     </resultMap>
     <!--查询所有商品-->
@@ -37,7 +38,8 @@
             tu.*,
             c.category_name cname,
             i.images_name iname,
-            sc.shoppingcar_id scid
+            sc.shoppingcar_id scid,
+            sc.user_id uid
         FROM
             sell_goods s
                 LEFT JOIN t_category c

@@ -1,5 +1,6 @@
 package com.shop.schoolshop.service.impl;
 
+import com.shop.schoolshop.exception.ServiceException;
 import com.shop.schoolshop.mapper.UserInfoMapper;
 import com.shop.schoolshop.pojo.ResultBean;
 import com.shop.schoolshop.pojo.User;
@@ -43,14 +44,13 @@ public class UserInfoServiceImpl implements UserInfoService {
     public ResultBean updateByUserInfo(User user) {
          //判断手机号是否存在
         User user1 = userInfoMapper.getByuserPhone(user.getPhone());
-        System.out.println(user1.getClass());
-        System.out.println(user.getClass());
-        if (!user1.getUserId().equals(user.getUserId()) ){
+
+        if (null != user1 && !user.getUserId().equals(user1.getUserId()) ){
             return ResultBean.error(500,"该手机号已绑定其他账号");
         }
         int result =userInfoMapper.updateByUserInfo(user);
         if (1 == result){
-            return ResultBean.success("更新信息成功");
+            return ResultBean.success("更新信息成功",user);
         }
         return ResultBean.error(500,"更新失败");
     }
@@ -85,7 +85,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         user.setPassword(npwd);
         int result = userInfoMapper.updateByUserInfo(user);
         if (result == 1){
-            return ResultBean.success("修改密码成功");
+            return ResultBean.success("修改密码成功,请重新登录！");
         }
         return ResultBean.error(500,"修改密码失败");
     }
@@ -97,9 +97,13 @@ public class UserInfoServiceImpl implements UserInfoService {
      */
     @Override
     public ResultBean deleteUser(String userId) {
-        int result = userInfoMapper.deleteUserInfo(userId);
-        if (1 == result){
-            return ResultBean.success("注销成功");
+        try {
+            int result = userInfoMapper.deleteUserInfo(userId);
+            if (1 == result){
+                return ResultBean.success("注销成功");
+            }
+        }catch (Exception e){
+            return ResultBean.error(500,"该用户绑定其他商品无法注销！");
         }
         return ResultBean.error(500,"注销失败");
     }
@@ -148,6 +152,7 @@ public class UserInfoServiceImpl implements UserInfoService {
         String md5password = MD5Util.MD5(userRegister.getPassWord());
         user.setPassword(md5password);
         user.setUserName(userRegister.getUserName());
+        user.setUserFace("face.jpg");
         int result = userInfoMapper.InsertUser(user);
         if (1 == result){
             return ResultBean.success("注册成功");

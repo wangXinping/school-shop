@@ -24,7 +24,7 @@ mybatis:
 
 lex:
   #头像存放路径
-  filepath: D:\Study\school-shop\images\
+  filepath: D:\Study\school-shop\images\userFace\
   imagespath: D:\Study\school-shop\images\goodsimgs\
 
 

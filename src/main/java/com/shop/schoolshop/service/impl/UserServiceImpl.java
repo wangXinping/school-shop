@@ -69,7 +69,7 @@ public class UserServiceImpl implements UserService {
            String token = JwtTokenUtil.setToken(user);
            return ResultBean.success("登录成功",token);
        }
-        return ResultBean.error(500,"登录失败,用户名或密码输入错误");
+        return ResultBean.error(500,"用户不存在！");
     }
 
 

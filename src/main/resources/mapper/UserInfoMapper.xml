@@ -8,17 +8,14 @@
     <update id="updateByUserInfo">
         update t_user
         <set>
-            <if test="user.userId != null and user.userId != ''">
-                user_id = #{user.userId},
-            </if>
             <if test="user.phone != null and user.phone != ''">
                 phone=#{user.phone},
             </if>
             <if test="user.userFace != null and user.userFace != ''">
-                user_face = #{user.userFace}
+                user_face = #{user.userFace},
             </if>
             <if test="user.password != null and user.password != ''">
-                password=#{user.password},
+                `password`=#{user.password},
             </if>
             <if test="user.userName != null and user.userName != ''">
                 user_name=#{user.userName},
@@ -34,8 +31,8 @@
     </update>
     <!--注册用户信息-->
     <insert id="InsertUser">
-        INSERT INTO t_user(`user_id`, `user_name`, `phone`, `password`)
-        VALUES (#{userId}, #{userName}, #{phone}, #{password});
+        INSERT INTO t_user(`user_id`, `user_name`, `phone`, `password`,user_face)
+        VALUES (#{userId}, #{userName}, #{phone}, #{password},#{userFace});
     </insert>
     <!--查询用户信息-->
     <select id="getByUserInfo" resultType="com.shop.schoolshop.pojo.User">

@@ -47,7 +47,7 @@
         SELECT
             u.user_id uid,
             u.user_name uname,
-            sg.user_id sgid,
+            sg.goods_id sgid,
             sg.goods_name sgname,
             sg.price sgprice,
             sg.present sgpresent,
