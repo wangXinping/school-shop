@@ -9,6 +9,7 @@
         <id column="goods_id" property="goodsId"></id>
         <result column="goods_name" property="goodsName"></result>
         <result column="price" property="price"></result>
+        <result column="goods_number" property="goodsNumber"></result>
         <result column="user_id" property="userId"></result>
         <result column="present" property="present"></result>
         <result column="category_id" property="categoryId"></result>

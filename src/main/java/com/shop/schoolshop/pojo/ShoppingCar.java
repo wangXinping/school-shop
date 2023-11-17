@@ -17,6 +17,9 @@ public class ShoppingCar {
     @ApiModelProperty("购物车id")
     private int shoppingId;
 
+    @ApiModelProperty("存入到购物车的商品个数")
+    private int selectNumber;
+
     @ApiModelProperty("用户id")
     private String userId;
     @ApiModelProperty("用户类")

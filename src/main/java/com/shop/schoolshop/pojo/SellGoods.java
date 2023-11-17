@@ -38,6 +38,9 @@ public class SellGoods {
     @ApiModelProperty("商品类型名称")
     private String categoryName;
 
+    @ApiModelProperty("商品个数")
+    private Integer goodsNumber;
+
     @ApiModelProperty("商品介绍")
     private String present;
     @ApiModelProperty("创建时间")

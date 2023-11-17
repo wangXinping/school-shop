@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.shop.schoolshop.mapper.AddressMapper">
+
+    <!--新增收货地址-->
+    <insert id="InsertAddress">
+        INSERT INTO t_address(`rece_name`, `address_phone`, `address_info`, `user_id`) VALUES (#{address.receName}, #{address.addressPhone},#{address.addressInfo},#{address.userId});
+    </insert>
+    <!--更新收货地址-->
+    <update id="updateAddress">
+        UPDATE t_address
+        SET `rece_name` = #{address.receName},
+            `address_phone` = #{address.addressPhone},
+            `address_info` = #{address.addressInfo}
+        WHERE
+            `address_id` = #{address.addressId} AND user_id = #{address.userId};
+    </update>
+    <!--更新默认地址-->
+    <update id="updateDefaultAddress">
+        UPDATE t_address
+        SET `is_default`=#{address.isDefault}
+        WHERE
+            `address_id` = #{address.addressId} AND user_id = #{address.userId};
+    </update>
+    <!--删除收货地址-->
+    <delete id="deleteAddress">
+        DELETE FROM t_address WHERE address_id =#{address.addressId} AND user_id =#{address.userId}
+    </delete>
+
+</mapper>

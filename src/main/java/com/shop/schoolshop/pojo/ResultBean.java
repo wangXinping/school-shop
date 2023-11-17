@@ -28,6 +28,14 @@ public class ResultBean {
         return resultBean;
 
     }
+    public static ResultBean success(Object data){
+        ResultBean resultBean = new ResultBean();
+        resultBean.setCode(200);
+        resultBean.setMsg("");
+        resultBean.setData(data);
+        return resultBean;
+
+    }
 
     /**
      * 成功返回结果

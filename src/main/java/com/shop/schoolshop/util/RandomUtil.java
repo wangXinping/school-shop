@@ -24,4 +24,23 @@ public class RandomUtil {
         //System.out.println(randomString);
         return randomString;
     }
+
+    public static String createOrder ()
+    {
+        int length = 18; // 字符串的长度
+        Random random1 = new Random();
+
+        StringBuilder sb = new StringBuilder(length);
+        sb.append("d");
+        for (int i = 0; i < length; i++) {
+            int index = random1.nextInt(CHARACTERS.length());
+            if (i==6){
+                sb.append("-");
+            }
+            sb.append(CHARACTERS.charAt(index));
+        }
+        String randomString1 = sb.toString();
+        //System.out.println(randomString);
+        return randomString1;
+    }
 }

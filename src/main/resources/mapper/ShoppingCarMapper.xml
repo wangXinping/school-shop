@@ -6,6 +6,9 @@
 <mapper namespace="com.shop.schoolshop.mapper.ShoppingCarMapper">
 
     <resultMap id="UserAndGoods" type="com.shop.schoolshop.pojo.ShoppingCar">
+        <id property="shoppingId" column="shoppingcar_id"></id>
+        <result property="userId" column="user_id"></result>
+        <result property="selectNumber" column="select_number"></result>
         <collection property="user" ofType="com.shop.schoolshop.pojo.User">
             <id property="userId" column="uid"></id>
             <result property="userName" column="uname"></result>
@@ -15,6 +18,7 @@
             <result property="goodsName" column="sgname"></result>
             <result property="price" column="sgprice"></result>
             <result property="present" column="sgpresent"></result>
+            <result property="goodsNumber" column="sgnumber"></result>
             <collection property="user" ofType="com.shop.schoolshop.pojo.User">
                 <id property="userId" column="u2id"></id>
                 <result property="userName" column="u2name"></result>
@@ -45,12 +49,14 @@
     <!--查询个人购物车-->
     <select id="getShoppingCarInfo" resultMap="UserAndGoods">
         SELECT
+            sc.*,
             u.user_id uid,
             u.user_name uname,
             sg.goods_id sgid,
             sg.goods_name sgname,
             sg.price sgprice,
             sg.present sgpresent,
+            sg.goods_number sgnumber,
             u2.user_id u2id,
             u2.user_name u2name,
             u2.user_face u2face,
